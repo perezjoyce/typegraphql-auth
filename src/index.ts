@@ -10,6 +10,7 @@ import cors from 'cors'
 import { RegisterResolver } from "./modules/user/Register"
 import { LoginResolver } from "./modules/user/Login";
 import { redis } from './redis'
+import { MeResolver } from "./modules/user/Me";
 
 const PORT = 4000
 
@@ -17,7 +18,7 @@ const main = async () => {
     await createConnection();
 
     const schema = await buildSchema({
-        resolvers: [RegisterResolver, LoginResolver]
+        resolvers: [RegisterResolver, LoginResolver, MeResolver]
     })
 
     const apolloServer = new ApolloServer({

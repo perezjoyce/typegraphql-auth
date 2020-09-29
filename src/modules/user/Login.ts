@@ -25,7 +25,7 @@ export class LoginResolver {
         }
 
         //send back a cookie
-        ctx.req.session!.userId = user.id
+        ctx.req.session!.userId = user.id //create a session in redis and persist it
 
         return user
     }
