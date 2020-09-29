@@ -9,6 +9,6 @@
     "synchronize": true,
     "logging": true,
     "entities": [
-        "dist/entity/*.*"
+        "src/entity/*.*"
     ]
 }
