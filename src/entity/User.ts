@@ -17,12 +17,14 @@ export class User extends BaseEntity {
     lastName: string;
 
     @Field()
-    name(@Root("since") parent: User): string {
+    name(@Root() parent: User): string {
         return `${parent.firstName} ${parent.lastName}`
     }
 
     @Field()
     @Column("text", { unique: true })
+
+
     email: string;
 
     @Column()
