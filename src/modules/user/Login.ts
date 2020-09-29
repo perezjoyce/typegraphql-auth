@@ -24,6 +24,10 @@ export class LoginResolver {
             return null
         }
 
+        if (!user.confirmed) {
+            throw new Error("Please confirm email")
+        }
+
         //send back a cookie
         ctx.req.session!.userId = user.id //create a session in redis and persist it
 
