@@ -7,6 +7,7 @@ import { isAuth } from '../../middleware/isAuth'
 import { logger } from '../../middleware/Logger'
 import { sendEmail } from '../../utils/sendEmail'
 import { createConfirmationUrl } from '../../utils/createConfirmationUrl'
+import { confirmUserPrefix } from '../../constants/redisPrefixes'
 
 @Resolver()
 export class RegisterResolver {
@@ -31,7 +32,7 @@ export class RegisterResolver {
 
         await sendEmail(
             email,
-            await createConfirmationUrl(user.id),
+            await createConfirmationUrl(user.id, confirmUserPrefix),
             `${firstName} ${lastName}`,
             "Click to confirm your account"
         )
