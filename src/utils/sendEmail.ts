@@ -1,6 +1,11 @@
 import nodemailer from 'nodemailer'
 
-export async function sendEmail(email: string, url: string, name: string) {
+export async function sendEmail(
+    email: string,
+    url: string,
+    name: string,
+    message: string
+) {
     let account = await nodemailer.createTestAccount();
 
     let transporter = nodemailer.createTransport({
@@ -18,7 +23,7 @@ export async function sendEmail(email: string, url: string, name: string) {
         to: email,
         subject: `Hello, ${name}!`,
         text: "Hello world?",
-        html: `<a href="${url}" target="_blank">Click to confirm your account</a>`,
+        html: `<a href="${url}" target="_blank">${message}</a>`,
     });
 
     console.log("Message sent: %s", info.messageId);

@@ -32,7 +32,8 @@ export class RegisterResolver {
         await sendEmail(
             email,
             await createConfirmationUrl(user.id),
-            `${firstName} ${lastName}`
+            `${firstName} ${lastName}`,
+            "Click to confirm your account"
         )
 
         return user
