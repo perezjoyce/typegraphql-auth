@@ -7,12 +7,7 @@ import session from "express-session"
 import connectRedis from 'connect-redis'
 import cors from 'cors'
 
-import { RegisterResolver } from "./modules/user/Register"
-import { LoginResolver } from "./modules/user/Login";
 import { redis } from './redis'
-import { MeResolver } from "./modules/user/Me";
-import { ConfirmUserResolver } from "./modules/user/ConfirmUser";
-import { ForgotPasswordResolver } from "./modules/user/ForgotPassword";
 
 const PORT = 4000
 
@@ -20,13 +15,7 @@ const main = async () => {
     await createConnection();
 
     const schema = await buildSchema({
-        resolvers: [
-            RegisterResolver,
-            LoginResolver,
-            MeResolver,
-            ConfirmUserResolver,
-            ForgotPasswordResolver,
-        ],
+        resolvers: [__dirname + "/modules/**/*.ts"],
         authChecker: ({ context: { req } }) => {
             return !!req.session.userId //returns a boolean
         }
