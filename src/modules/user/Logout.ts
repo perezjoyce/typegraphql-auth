@@ -12,10 +12,11 @@ export class LogoutResolver {
             ctx.req.session!.destroy((error) => {
                 if (error) {
                     console.log(error)
-                    rej(false)
+                    return rej(false)
                 }
 
-                res(true)
+                ctx.res.clearCookie('qid')
+                return res(true)
             })
         })
     }

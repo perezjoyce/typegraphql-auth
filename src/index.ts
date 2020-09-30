@@ -24,7 +24,7 @@ const main = async () => {
 
     const apolloServer = new ApolloServer({
         schema,
-        context: ({ req }: any) => ({ req }) //access session data
+        context: ({ req, res }: any) => ({ req, res }) //access session data
     })
 
     const app = Express()
