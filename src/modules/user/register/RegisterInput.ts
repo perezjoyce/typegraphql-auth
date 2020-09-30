@@ -1,10 +1,11 @@
-import { Length, IsEmail, Min } from "class-validator";
+import { Length, IsEmail } from "class-validator";
 import { Field, InputType } from "type-graphql";
 
 import { IsEmailAlreadyUsed } from "./isEmailAlreadyUsed"
+import { PasswordInput } from "../../shared/PasswordInput";
 
 @InputType()
-export class RegisterInput {
+export class RegisterInput extends PasswordInput {
     @Field()
     @Length(1, 255, { message: "First should be at least 1 character." })
     firstName: string;
@@ -17,8 +18,4 @@ export class RegisterInput {
     @IsEmail()
     @IsEmailAlreadyUsed({ message: "Email is already in use." })
     email: string;
-
-    @Field()
-    @Min(5)
-    password: string;
 }
