@@ -7,7 +7,7 @@ const BaseCreateProduct = createResolver(
     "Product",
     Product,
     ProductInput,
-    Product
+    Product,
 )
 
 @Resolver()
